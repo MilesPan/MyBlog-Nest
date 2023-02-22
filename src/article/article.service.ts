@@ -13,13 +13,12 @@ export class ArticleService {
         title: createArticleDto.title,
         content: createArticleDto.content,
         categoryId: +createArticleDto.categoryId,
+        readTimes: 0,
       },
     });
   }
 
   async findAll(args: Record<string, any>) {
-    console.log(args);
-
     const row = this.config.get('ARTICLE_PAGE_ROW');
     const page = args.page ? +args.page : 1;
     const articles = await this.prisma.article.findMany({
@@ -68,6 +67,18 @@ export class ArticleService {
         title: updateArticleDto.title,
         content: updateArticleDto.content,
         categoryId: +updateArticleDto.categoryId,
+        readTimes: +updateArticleDto.readTimes,
+      },
+    });
+  }
+  async updateReadTimes(id: number) {
+    const dto = await this.findOne(id);
+    return this.prisma.article.update({
+      where: {
+        id,
+      },
+      data: {
+        readTimes: ++dto.readTimes,
       },
     });
   }

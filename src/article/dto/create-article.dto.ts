@@ -7,4 +7,5 @@ export class CreateArticleDto {
   content: string;
   @IsNotEmpty({ message: '栏目不能为空' })
   categoryId: number;
+  readTimes: number;
 }

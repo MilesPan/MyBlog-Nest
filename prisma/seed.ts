@@ -23,6 +23,7 @@ async function run() {
         title: Random.ctitle(10, 30),
         content: Random.cparagraph(30, 50),
         categoryId: _.random(1, 5),
+        readTimes: 0,
       },
     });
   }

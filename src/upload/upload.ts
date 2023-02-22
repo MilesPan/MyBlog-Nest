@@ -13,8 +13,6 @@ export function fileFilter(type: string) {
     file: any,
     callback: (error: Error | null, acceptFile: boolean) => void,
   ) => {
-    console.log(file.mimetype);
-
     if (!file.mimetype.includes(type)) {
       // 如果不是image类型，报错
       callback(new MethodNotAllowedException('类型不允许'), false);
